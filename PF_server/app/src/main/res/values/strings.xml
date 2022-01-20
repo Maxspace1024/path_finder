@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">PF_server_v003_1</string>
+    <string-array name="loc_array">
+        <item>one</item>
+        <item>two</item>
+        <item>three</item>
+        <item>four</item>
+    </string-array>
 </resources>
