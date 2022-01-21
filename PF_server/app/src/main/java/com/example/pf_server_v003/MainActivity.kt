@@ -107,21 +107,21 @@ class MainActivity : AppCompatActivity() ,OnItemSelectedListener{
                     //====
                     var dstname = jData.get("Way").toString()
                     var dst : Vertex<String?> = mapName(dstname)
+                    Log.d("locdst",dstname)
                     var src : Vertex<String?> = mapName(spin001.selectedItem.toString())
-
-                    try {
-                        imgArrow.rotation = graph.calTwoNodeAngle(src, dst)!![0].toFloat()
-                    }
-                    catch (e : Exception){
-                        tvMsg.setText("parseFloat ERROR")
-                    }
-
 
                     var path : String = ""
                     for (v in graph.shortestpath(src,dst)!!.reversed()){
                         path+=v.data+" -> "
                     }
                     tvMsg.setText(path)
+
+                    try {
+                        imgArrow.rotation = graph.calTwoNodeAngle(src, dst)!![0].toFloat()
+                    }
+                    catch (e : Exception){
+                        tvMsg.setText("some exception")
+                    }
                 }
                 MSGtype.SERV_OFF.ordinal        -> tvServerStat.setText("close a server")
             }
