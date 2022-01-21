@@ -12,7 +12,7 @@
         android:layout_height="match_parent"
         android:layout_weight="4">
         <ImageView
-            android:id="@+id/iv_nchumap"
+            android:id="@+id/img_nchumap"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:src="@drawable/maps"
