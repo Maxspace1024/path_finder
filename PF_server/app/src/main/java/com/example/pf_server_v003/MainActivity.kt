@@ -35,8 +35,23 @@ class MainActivity : AppCompatActivity() ,OnItemSelectedListener{
     private lateinit var spin001 : Spinner
 
     private lateinit var graph : Graph<String?>
-
-    private lateinit var nodearr : Array<Vertex<String?>>
+    private lateinit var node1  : Vertex<String?>
+    private lateinit var node2  : Vertex<String?>
+    private lateinit var node3  : Vertex<String?>
+    private lateinit var node4  : Vertex<String?>
+    private lateinit var node5  : Vertex<String?>
+    private lateinit var node6  : Vertex<String?>
+    private lateinit var node7  : Vertex<String?>
+    private lateinit var node8  : Vertex<String?>
+    private lateinit var corner1 : Vertex<String?>
+    private lateinit var corner2 : Vertex<String?>
+    private lateinit var corner3 : Vertex<String?>
+    private lateinit var corner4 : Vertex<String?>
+    private lateinit var corner5 : Vertex<String?>
+    private lateinit var corner6 : Vertex<String?>
+    private lateinit var corner7 : Vertex<String?>
+    private lateinit var corner8 : Vertex<String?>
+    private lateinit var corner9 : Vertex<String?>
 
     private lateinit var jData : JSONObject
     private var serverIsRunning : Boolean = false
@@ -73,7 +88,7 @@ class MainActivity : AppCompatActivity() ,OnItemSelectedListener{
                     Log.d("serverx", jData.toString())
                     //Log.d("selectt", spin001.selectedItem.toString())
                     //Toast.makeText(this,spin001.selectedItem.toString(),Toast.LENGTH_SHORT).show()
-                    //==
+                    //====
                     /*var way = jData.get("Way").toString()
                     when(way){
                         "North" -> imgArrow.rotation=0.0f
@@ -89,10 +104,18 @@ class MainActivity : AppCompatActivity() ,OnItemSelectedListener{
                             }
                         }
                     }*/
-                    //==
+                    //====
                     var dstname = jData.get("Way").toString()
                     var dst : Vertex<String?> = mapName(dstname)
                     var src : Vertex<String?> = mapName(spin001.selectedItem.toString())
+
+                    try {
+                        imgArrow.rotation = graph.calTwoNodeAngle(src, dst)!![0].toFloat()
+                    }
+                    catch (e : Exception){
+                        tvMsg.setText("parseFloat ERROR")
+                    }
+
 
                     var path : String = ""
                     for (v in graph.shortestpath(src,dst)!!.reversed()){
@@ -163,51 +186,48 @@ class MainActivity : AppCompatActivity() ,OnItemSelectedListener{
 
     fun mapName(s:String) : Vertex<String?>{
         when(s){
-            "行政大樓"->return nodearr[0]
-            "惠蓀堂" ->return nodearr[1]
-            "圖書館"->return nodearr[2]
-            "中興湖"->return nodearr[3]
-            "法政行銷大樓"->return nodearr[4]
-            "綜合大樓"->return nodearr[5]
-            "應用科技大樓"->return nodearr[6]
-            "理學大樓"->return nodearr[7]
-            "corner1"->return nodearr[8]
-            "corner2"->return nodearr[9]
-            "corner3"->return nodearr[10]
-            "corner4"->return nodearr[11]
-            "corner5"->return nodearr[12]
-            "corner6"->return nodearr[13]
-            "corner7"->return nodearr[14]
-            "corner8"->return nodearr[15]
-            "corner9"->return nodearr[16]
+            "行政大樓"->return node1
+            "惠蓀堂" ->return node2
+            "圖書館"->return node3
+            "中興湖"->return node4
+            "法政行銷大樓"->return node5
+            "綜合大樓"->return node6
+            "應用科技大樓"->return node7
+            "理學大樓"->return node8
+            "corner1"->return corner1
+            "corner2"->return corner2
+            "corner3"->return corner3
+            "corner4"->return corner4
+            "corner5"->return corner5
+            "corner6"->return corner6
+            "corner7"->return corner7
+            "corner8"->return corner8
+            "corner9"->return corner9
         }
-        return nodearr[0]
+        return node1
     }
 
 
     fun initMyMap(){
         graph = Graph<String?>()
 
-        val node1 = graph.createVertex("行政大樓",listOf(-0.5,1.0))
-        val node2 = graph.createVertex("惠蓀堂",listOf(0.0,1.5))
-        val node3 = graph.createVertex("圖書館",listOf(-0.5,-1.0))
-        val node4 = graph.createVertex("中興湖",listOf(-0.5,0.0))
-        val node5 = graph.createVertex("法政行銷大樓",listOf(-1.0,-0.5))
-        val node6 = graph.createVertex("綜合大樓",listOf(-1.5,0.0))
-        val node7 = graph.createVertex("應用科技大樓",listOf(0.7,0.0))
-        val node8 = graph.createVertex("理學大樓",listOf(1.5,0.0))
-        val corner1 = graph.createVertex("corner1",listOf(0.0,1.0))
-        val corner2 = graph.createVertex("corner2",listOf(1.0,1.0))
-        val corner3 = graph.createVertex("corner3",listOf(1.0,0.0))
-        val corner4 = graph.createVertex("corner4",listOf(1.0,-1.0))
-        val corner5 = graph.createVertex("corner5",listOf(0.0,-1.0))
-        val corner6 = graph.createVertex("corner6",listOf(-1.0,-1.0))
-        val corner7 = graph.createVertex("corner7",listOf(-1.0,0.0))
-        val corner8 = graph.createVertex("corner8",listOf(-1.0,1.0))
-        val corner9 = graph.createVertex("corner9",listOf(0.0,0.0))
-
-        nodearr = arrayOf(node1,node2,node3,node4,node5,node6,node7,node8,
-            corner1,corner2,corner3,corner4,corner5,corner6,corner7,corner8,corner9)
+        node1 = graph.createVertex("行政大樓",listOf(-0.5,1.0))
+        node2 = graph.createVertex("惠蓀堂",listOf(0.0,1.5))
+        node3 = graph.createVertex("圖書館",listOf(-0.5,-1.0))
+        node4 = graph.createVertex("中興湖",listOf(-0.5,0.0))
+        node5 = graph.createVertex("法政行銷大樓",listOf(-1.0,-0.5))
+        node6 = graph.createVertex("綜合大樓",listOf(-1.5,0.0))
+        node7 = graph.createVertex("應用科技大樓",listOf(0.7,0.0))
+        node8 = graph.createVertex("理學大樓",listOf(1.5,0.0))
+        corner1 = graph.createVertex("corner1",listOf(0.0,1.0))
+        corner2 = graph.createVertex("corner2",listOf(1.0,1.0))
+        corner3 = graph.createVertex("corner3",listOf(1.0,0.0))
+        corner4 = graph.createVertex("corner4",listOf(1.0,-1.0))
+        corner5 = graph.createVertex("corner5",listOf(0.0,-1.0))
+        corner6 = graph.createVertex("corner6",listOf(-1.0,-1.0))
+        corner7 = graph.createVertex("corner7",listOf(-1.0,0.0))
+        corner8 = graph.createVertex("corner8",listOf(-1.0,1.0))
+        corner9 = graph.createVertex("corner9",listOf(0.0,0.0))
 
         graph.addNeighbor()
         Log.d("showMap",graph.toString())
