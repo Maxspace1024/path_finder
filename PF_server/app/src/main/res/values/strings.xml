@@ -1,9 +1,22 @@
 <resources>
     <string name="app_name">PF_server_v003_1</string>
     <string-array name="loc_array">
-        <item>one</item>
-        <item>two</item>
-        <item>three</item>
-        <item>four</item>
+        <item>行政大樓</item>
+        <item>惠蓀堂</item>
+        <item>圖書館</item>
+        <item>中興湖</item>
+        <item>法政行銷大樓</item>
+        <item>綜合大樓</item>
+        <item>應用科技大樓</item>
+        <item>理學大樓</item>
+        <item>corner1</item>
+        <item>corner2</item>
+        <item>corner3</item>
+        <item>corner4</item>
+        <item>corner5</item>
+        <item>corner6</item>
+        <item>corner7</item>
+        <item>corner8</item>
+        <item>corner9</item>
     </string-array>
 </resources>

@@ -57,7 +57,6 @@ class MainActivity : AppCompatActivity() ,OnItemSelectedListener{
                 MSGtype.SERV_BREAK_LOOP.ordinal -> {
                     Log.d("serverx", "close a server(break loop)")
                     tvServerStat.setText("close a server(break loop)")
-
                 }
                 MSGtype.SERV_IMG_ROT.ordinal    -> {
                     Log.d("serverx", jData.toString())
@@ -80,6 +79,8 @@ class MainActivity : AppCompatActivity() ,OnItemSelectedListener{
                         }
                     }
                     //==
+
+
                     tvMsg.setText(jData.toString())
                 }
                 MSGtype.SERV_OFF.ordinal        -> tvServerStat.setText("close a server")
